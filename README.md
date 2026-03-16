@@ -284,34 +284,6 @@ O navegador abrirá automaticamente em: **http://localhost:3000**
 
 ---
 
-## 🔒 Segurança Implementada
-
-### Autenticação
-- ✅ **JWT (JSON Web Tokens)** para autenticação stateless
-- ✅ Tokens expiram em 7 dias
-- ✅ Secret armazenado em variável de ambiente
-
-### Proteção de Senha
-- ✅ **bcrypt** com 10 rounds de hashing
-- ✅ Senhas nunca armazenadas em texto puro
-- ✅ Salt único por senha
-
-### SQL Injection Prevention
-- ✅ **Prepared Statements** (placeholders `?`)
-- ✅ Parâmetros sempre sanitizados
-- ✅ Nunca concatenação de strings em queries
-
-### CORS
-- ✅ Controle de acesso entre origens
-- ✅ Apenas domínios permitidos podem acessar a API
-
-### Variáveis Sensíveis
-- ✅ `.env` não commitado no Git
-- ✅ Credenciais nunca expostas no código
-- ✅ `.env.example` para referência
-
----
-
 ## 📊 Arquitetura e Fluxo de Dados
 
 ### Arquitetura Geral
@@ -440,83 +412,6 @@ Response: {
 
 ---
 
-## 🎨 Interface e Design
-
-### Paleta de Cores
-- **Principal:** `#DC2626` (Vermelho - red-600)
-- **Fundo:** Gradiente preto → cinza-900
-- **Texto:** Branco (`#FFFFFF`)
-- **Secundário:** Cinza-400 (`#9CA3AF`)
-- **Destaque:** Amarelo-500 (`#EAB308`) para avaliações
-
-### Componentes Principais
-
-#### MediaCard
-Exibe card de filme/série com:
-- Pôster
-- Avaliação TMDB
-- Botão de favoritar
-- Hover overlay com "Ver Detalhes"
-- Animação de scale ao passar o mouse
-
-#### Banner Rotativo
-- 5 filmes em rotação automática (5s)
-- Navegação manual com setas
-- Indicadores clicáveis
-- Animação de fade entre filmes
-- Zoom no hover
-
-#### ScrollableRow
-Barra horizontal com:
-- Scroll suave
-- Setas de navegação (aparecem no hover)
-- Esconde scrollbar nativa
-- Ícone e título da seção
-
----
-
-## 🐛 Solução de Problemas
-
-### Erro: "Cannot connect to database"
-**Causa:** MySQL não está rodando ou credenciais incorretas  
-**Solução:**
-1. Verifique se o MySQL está ativo
-2. Confirme credenciais no `.env`
-3. Teste: `mysql -u root -p`
-
-### Erro: "Port 3000 already in use"
-**Causa:** Outra aplicação usando a porta  
-**Solução:**
-```bash
-# Windows
-netstat -ano | findstr :3000
-taskkill /PID [número] /F
-
-# Mac/Linux
-lsof -ti:3000 | xargs kill -9
-```
-
-### Erro: "Cannot find module"
-**Causa:** Dependências não instaladas  
-**Solução:**
-```bash
-npm install
-```
-
-### Filmes não carregam
-**Causa:** API Key do TMDB inválida ou ausente  
-**Solução:**
-1. Verifique se a API Key está em `App.jsx` linha 5
-2. Teste a API: `https://api.themoviedb.org/3/movie/popular?api_key=SUA_KEY`
-
-### Erro: "JWT malformed"
-**Causa:** Token inválido ou ausente  
-**Solução:**
-1. Faça logout e login novamente
-2. Limpe localStorage: `localStorage.clear()`
-
----
-
 ## 📈 Métricas do Projeto
 
 ### Linhas de Código
@@ -537,27 +432,6 @@ npm install
 
 ---
 
-## 🚀 Deploy (Produção)
-
-### Opção Recomendada: Railway + Vercel
-
-**Back-end no Railway:**
-1. Crie conta em: https://railway.app/
-2. Deploy MySQL
-3. Deploy repositório back-end
-4. Configure variáveis de ambiente
-5. Obtenha URL gerada
-
-**Front-end no Vercel:**
-1. Crie conta em: https://vercel.com/
-2. Import repositório front-end
-3. Configure `REACT_APP_BACKEND_URL`
-4. Deploy automático
-
-**Custo:** 100% Grátis nos planos free tier
-
----
-
 ## 🎓 Aprendizados e Desafios
 
 ### Principais Aprendizados
@@ -567,24 +441,6 @@ npm install
 - ✅ Integração front-end ↔ back-end
 - ✅ Segurança web (bcrypt, SQL Injection prevention)
 - ✅ UX/UI com animações e responsividade
-
-### Desafios Superados
-- 🎯 Sincronização de favoritos entre front e back
-- 🎯 Banner rotativo com controle manual e automático
-- 🎯 Sistema de busca com dropdown + página de resultados
-- 🎯 Autenticação persistente com JWT
-- 🎯 Design responsivo em múltiplos breakpoints
-
----
-
-## 📝 Disciplina
-
-**Curso:** Bacharelado em Ciência da Computação  
-**Instituição:** IFPR Campus Pinhais  
-**Disciplina:** Desenvolvimento Web  
-**Período:** 2024/2025  
-**Aluno:** Eduardo  
-**Matrícula:** 20242PIN10020001
 
 ---
 
@@ -606,54 +462,10 @@ Este projeto foi desenvolvido para fins educacionais como trabalho da disciplina
 
 ---
 
-## 🙏 Agradecimentos
-
-- **IFPR Campus Pinhais** - Pela formação acadêmica
-- **The Movie Database (TMDB)** - Pelos dados de filmes e séries
-- **Lucide** - Pelos ícones utilizados
-- **Claude AI (Anthropic)** - Pelo auxílio no desenvolvimento
-
----
-
-## 📞 Contato
-
-**Desenvolvedor:** Eduardo  
-**Email:** [seu-email@exemplo.com]  
-**GitHub:** [github.com/seu-usuario](https://github.com/seu-usuario)  
-**LinkedIn:** [linkedin.com/in/seu-perfil](https://linkedin.com/in/seu-perfil)
-
----
-
-## 📸 Screenshots
-
-### Tela Inicial
-![Home](docs/screenshots/home.png)
-*Banner rotativo com filmes em alta*
-
-### Detalhes do Filme
-![Detalhes](docs/screenshots/details.png)
-*Informações completas, trailer e elenco*
-
-### Busca
-![Busca](docs/screenshots/search.png)
-*Resultados da pesquisa em grid*
-
-### Favoritos
-![Favoritos](docs/screenshots/favorites.png)
-*Lista personalizada de favoritos*
-
----
-
-⭐ **Se este projeto foi útil para você, considere dar uma estrela no GitHub!**
-
-**[🌐 Demo ao Vivo](#)** | **[🐛 Reportar Bug](https://github.com/seu-usuario/ezsflix/issues)** | **[💡 Sugerir Funcionalidade](https://github.com/seu-usuario/ezsflix/issues)**
-
----
-
 <div align="center">
 
-**Desenvolvido com ❤️ como Projeto Final de Desenvolvimento Web**
+**Desenvolvido como Projeto Final de Desenvolvimento Web**
 
-**IFPR Campus Pinhais - 2024/2025**
+**IFPR Campus Pinhais - 2025**
 
 </div>
